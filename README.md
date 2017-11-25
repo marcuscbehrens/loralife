@@ -26,4 +26,47 @@ const lmic_pinmap lmic_pins = {
 14. copy the device eui, the app eui as c-style msb into your code. it looks like this: msb
 { 0x00, 0x34, 0x03, 0xCA, 0x18, 0xC1, 0x33, 0xBE }
 15.copy the device address as hexadecimal string to your code.
-16. now you should be able to upload your code and your devicde to get into the network.
+16. now you should be able to upload your code and your device should get into the network and send "hello world!" every 60 seconds
+
+# Adding a fine dust sensor like SDS011 or SDS018
+
+1. buy a finedust sensor as required for your application. all of the known ones work with 5v and not with 3.3v so you also need to
+2. buy a buck/boost converter to 5v and to
+3. buy a levelshifter
+4. wire them all up as on the included picture especially connecting TX and RX with RX and TX through the level shifter and providing the 5V as the VCC to the dust sensor
+5. add the following routine as you see fit into your code and call it when you want to know these values:
+
+float pm25;
+float pm10;
+
+void measure_dust() {
+  uint8_t mData = 0;
+  uint8_t mPkt[10] = {0};
+  uint8_t mCheck = 0;
+  byte dust = 0;
+  while( Serial1.available() > 0 ) {
+    for( int i=0; i<10; ++i ) {
+      mPkt[i] = Serial1.read();
+      //Serial.println( mPkt[i], HEX );
+    }
+    if( 0xC0 == mPkt[1] ) {
+      // Read dust density.
+      // Check
+      uint8_t sum = 0;
+      for( int i=2; i<=7; ++i ) {
+        sum += mPkt[i];
+      }
+      if( sum == mPkt[8] ) {
+        uint8_t pm25Low   = mPkt[2];
+        uint8_t pm25High  = mPkt[3];
+        uint8_t pm10Low   = mPkt[4];
+        uint8_t pm10High  = mPkt[5];
+        pm25 = ( ( pm25High * 256.0 ) + pm25Low ) / 10.0;
+        pm10 = ( ( pm10High * 256.0 ) + pm10Low ) / 10.0;
+      }
+    }
+    Serial1.flush();
+  }
+}
+
+# Submit the finedust values to the lorawan network as payload
