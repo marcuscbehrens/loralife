@@ -36,7 +36,8 @@ These instructions and the source code are associated with https://www.meetup.co
 4. wire them all up as on the included picture especially connecting TX and RX with RX and TX through the level shifter and providing the 5V as the VCC to the dust sensor
 5. add the following routine as you see fit into your code and call it when you want to know these values:
 
-    float pm25;
+```
+    float pm25;
     float pm10;
 
     void measure_dust() {
@@ -68,5 +69,6 @@ These instructions and the source code are associated with https://www.meetup.co
         Serial1.flush();
       }
     }
+```
 
 # Submit the finedust values to the lorawan network as payload
