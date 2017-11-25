@@ -1,0 +1,4 @@
+# Instructions on how to assemble an buy or find an adafruit feather m0 lora 900, a fitting lipo battery and an usb cable
+2 follow the instructions on the adafruit site at https://learn.adafruit.com/adafruit-feather-m0-radio-with-lora-radio-module?view=all
+
+to solder the header pins, install the arduino ide and all necessary board libraries
