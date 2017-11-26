@@ -67,7 +67,7 @@ There can be many reasons for failure and this is just a short list of the basic
 ### Parse the values in the things network to json
 
 This step makes it much easier to read the received values and to forward them to other services. With the above fine dust sensor you can use below routine in the "Payload Formats" section of your application in the the things network to create a beautiful json from the bytes received:
-´´´
+```
 function Decoder(bytes, port) {
   var voltage = bytes[0]*8*3.3/1024;
   var dust025 = (256*bytes[1] + bytes[2])/10;
@@ -78,7 +78,7 @@ function Decoder(bytes, port) {
     dust100: dust100
   };
 }
-´´´
+```
 
 ### Use ifttt integration to forward your data to google sheets
 
