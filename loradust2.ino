@@ -332,5 +332,3 @@ void loop() {
     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);    //sleep 8 seconds, no upload of software possible in this time
   }
 }
-
-
