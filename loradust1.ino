@@ -3,7 +3,7 @@
 // Author: marcus@4xb.de
 // Date: 2017-04-14Z
 
-// hookup from SDS018 to feather - TX to RX, RX to TX, 5V to BAT, GND to GND, that's it
+// hookup from SDS018 to feather - TX to RX and RX to TX via a level shifter, 5V to a 5v boost converter, GND to GND, that's it
 
 // use sleep once all of your debugging is through
 //#include "Adafruit_SleepyDog.h"
