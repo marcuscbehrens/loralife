@@ -55,6 +55,7 @@ There can be many reasons for failure and this is just a short list of the basic
 - if you are to far away then the gateway might not be reached - in line of sight multiple kilometers could be ok - so coming closer to the gateway might be a good way to avoid this problem
 - coming closer then 3 meters line of sight might be a problem - put something in between you and the gateway (e.g. a wall)
 - if the owner of the gateway gives you access to it you can see sometimes your device registering with the gateway but the data not showing up in the application - but we have seen situations where the data was not showing up in the console but it has been forwarded to an google drive sheets via ifttt
+- if the device shows up on the gateway but the data does not come through reseting the frame counter might help
 
 ### Adding a fine dust sensor like SDS011 or SDS018
 
