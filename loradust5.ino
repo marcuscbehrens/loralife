@@ -34,8 +34,8 @@ const lmic_pinmap lmic_pins = {
     ,
 };
 
-float pm25;
-float pm10;
+float dust02p5;
+float dust10p0;
 float voltage;
 unsigned long nextmeasurement;
 
@@ -132,10 +132,10 @@ void do_send(osjob_t* j){
     Serial.println(voltage);
 
     mydata[0]=voltage*32;
-    mydata[1]=(int)(10*pm25) / 256;
-    mydata[2]=(int)(10*pm25) % 256;
-    mydata[3]=(int)(10*pm10) / 256;
-    mydata[4]=(int)(10*pm10) % 256;
+    mydata[1]=(int)(10*dust02p5) / 256;
+    mydata[2]=(int)(10*dust02p5) % 256;
+    mydata[3]=(int)(10*dust10p0) / 256;
+    mydata[4]=(int)(10*dust10p0) % 256;
     mydata[5]=MYNODEID;
     // Prepare upstream data transmission at the next possible time.
     LMIC_setTxData2(1, mydata,6, 1);  // 1 to trigger that ACK is sent
@@ -180,8 +180,6 @@ void wake_dust() {
 int bindex = 0;
 uint8_t mbuffer[10] = {0};
 uint8_t last = 0;
-float dust02p5;
-float dust10p0;
 
 void checkSDS011ForMessage() {
   if(Serial1.available()) {
